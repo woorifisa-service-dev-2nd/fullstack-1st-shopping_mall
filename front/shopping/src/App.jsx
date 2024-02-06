@@ -1,23 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import viteLogo from '/vite.svg'
-import Products from './pages/products/Products'
-import './App.css'
-import Order from './pages/order/Order'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProductsPage from "./pages/products/ProductsPage";
+import OrderPage from "./pages/order/OrderPage";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Products />}></Route>
-          <Route path="/order" element={<Order />}></Route>
+          <Route path="/" element={<ProductsPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
         </Routes>
       </Router>
     </>
-
-  )
+  );
 }
 
-export default App
+export default App;
