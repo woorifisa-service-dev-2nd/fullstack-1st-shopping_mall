@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 
 public class Product extends BaseEntity{
+
     String productName;
-    BigDecimal price;
+    Long price;
     String type;
 }

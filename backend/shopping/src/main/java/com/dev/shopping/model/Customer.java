@@ -20,10 +20,4 @@ public class Customer extends BaseEntity{
     String accountId;
     String accountPassword;
 
-    @OneToMany(mappedBy = "customer")
-    List<PurchaseList> purchaseLists;
-
-    @OneToMany(mappedBy = "preferred_product")
-    List<PreferredProduct> preferredProducts;
-
 }

@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.Store;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,15 +14,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Inventory extends BaseEntity{
     @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
-
-    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private BigDecimal qty;
-
-
-
+    private Long qty;
 }
