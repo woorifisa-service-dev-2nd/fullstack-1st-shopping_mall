@@ -15,15 +15,15 @@ public class Customer extends BaseEntity{
 
     String firstName;
     String lastName;
-    BigDecimal balance;
+    Long balance;
     String telephone;
     String accountId;
     String accountPassword;
 
-    @OneToMany(mappedBy = "customer")
-    List<PurchaseList> purchaseLists;
-
-    @OneToMany(mappedBy = "preferred_product")
-    List<PreferredProduct> preferredProducts;
+//    @OneToMany(mappedBy = "customer")
+//    List<PurchaseList> purchaseLists;
+//
+//    @OneToMany(mappedBy = "preferred_product")
+//    List<PreferredProduct> preferredProducts;
 
 }
