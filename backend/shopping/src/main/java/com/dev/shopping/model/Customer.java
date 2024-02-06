@@ -26,4 +26,5 @@ public class Customer extends BaseEntity{
 //    @OneToMany(mappedBy = "preferred_product")
 //    List<PreferredProduct> preferredProducts;
 
+
 }

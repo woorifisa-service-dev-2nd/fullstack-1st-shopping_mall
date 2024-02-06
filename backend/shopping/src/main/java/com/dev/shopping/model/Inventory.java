@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -21,8 +22,5 @@ public class Inventory extends BaseEntity{
     @JoinColumn(name = "product_id")
     private Product product;
     private Long qty;
-
-
-
 
 }
