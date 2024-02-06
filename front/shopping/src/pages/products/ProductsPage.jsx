@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import DefaultLayout from "../../layouts/DefaultLayouts";
 
-export default function Products() {
+export default function ProductsPage() {
   // 하드코딩된 상품 목록 데이터
   const products = [
     { id: 1, name: "티셔츠", price: 20000 },
