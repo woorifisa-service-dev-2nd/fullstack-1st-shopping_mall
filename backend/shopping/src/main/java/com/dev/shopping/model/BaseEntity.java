@@ -16,7 +16,6 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonManagedReference
     private long id = -1;
 
     public BaseEntity(Long id) {

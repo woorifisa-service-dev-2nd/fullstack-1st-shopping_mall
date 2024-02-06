@@ -16,11 +16,12 @@ public class Inventory extends BaseEntity{
     @JoinColumn(name = "store_id")
     private Store store;
 
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+    private Long qty;
 
-    private BigDecimal qty;
 
 
 

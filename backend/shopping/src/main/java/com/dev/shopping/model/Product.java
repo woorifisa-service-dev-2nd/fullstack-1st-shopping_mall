@@ -13,6 +13,6 @@ import java.math.BigDecimal;
 
 public class Product extends BaseEntity{
     String productName;
-    BigDecimal price;
+    Long price;
     String type;
 }
