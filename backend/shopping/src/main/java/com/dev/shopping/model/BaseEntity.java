@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,21 +14,9 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
+@ToString
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id = -1;
-
-    public BaseEntity(Long id) {
-        this.id = id;
-    }
-
-    public boolean isNew() {
-        return this.id == -1;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    private int id;
 }

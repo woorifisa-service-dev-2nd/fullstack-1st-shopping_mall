@@ -1,8 +1,9 @@
 package com.dev.shopping.controller;
 
 import com.dev.shopping.model.Product;
-import com.dev.shopping.service.ProductServiceImpl;
+import com.dev.shopping.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductServiceImpl productService;
+    @Autowired
+    private ProductService productService;
 
     @PostMapping
     public Product addProduct(@RequestBody Product product) {
@@ -20,27 +22,16 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public void deleteProduct(@PathVariable Long productId) {
+    public void deleteProduct(@PathVariable Integer productId) {
         productService.deleteById(productId);
     }
 
-    @GetMapping("/all")
-    public List<Product> listProducts() {
-        List<Product> products = productService.findAll();
-        return products;
-    }
-
     @GetMapping
-    public List<Product> listProduct(@RequestParam("keyword") String keyword) {
+    public List<Product> getProducts(@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+        if(keyword == null || keyword.isEmpty()) {
+            return productService.findAll();
+        }
         List<Product> results = productService.searchProductsByKeyword(keyword);
         return results;
     }
-
-//    @PatchMapping("/{productId}")
-//    public Product updateProduct(@PathVariable Long productId, @RequestBody Product product) {
-//        Product updatedProduct = productService.findById(productId);
-//        updatedProduct.setProductName(product.getProductName());
-//        updatedProduct.setPrice(product.getPrice());
-//        updatedProduct.setType(product.getType());
-//    }
 }

@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import DefaultLayout from "../../layouts/DefaultLayouts";
+import { findAllProducts } from "../../apis/ProductAPI";
 
 export default function ProductsPage() {
-  // 하드코딩된 상품 목록 데이터
-  const products = [
-    { id: 1, name: "티셔츠", price: 20000 },
-    { id: 2, name: "청바지", price: 40000 },
-    { id: 3, name: "운동화", price: 60000 },
-    { id: 4, name: "가방", price: 30000 },
-  ];
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    findAllProducts().then((data) => {
+      setProducts(data);
+      setCheckedList(new Array(data.length).fill(false));
+    });
+  }, []);
 
   const [orderList, setOrderList] = useState([]);
-  const [checkedList, setCheckedList] = useState(
-    products.map((product) => false)
-  );
+  const [checkedList, setCheckedList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,17 +28,15 @@ export default function ProductsPage() {
   const checkOrderHandler = (product, isChecked) => {
     if (isChecked) {
       setOrderList((prevOrderList) => [...prevOrderList, product]);
-      console.log(orderList);
     } else {
       setOrderList((prevOrderList) =>
         prevOrderList.filter((order) => order.id !== product.id)
       ); // 새로운 상태를 설정합니다.
-      console.log(orderList);
     }
   };
 
   const getChekedStyle = (idx) => {
-    return checkedList[idx] ? "bg-blue-200" : "bg-white";
+    return checkedList[idx] ? "bg-blue-200 border-blue-200" : "bg-white";
   };
 
   return (
@@ -55,7 +52,7 @@ export default function ProductsPage() {
               key={product.id}
               className={`flex items-center justify-between ${getChekedStyle(
                 idx
-              )} p-2 rounded-md w-72 cursor-pointer hover:bg-blue-200`}
+              )} p-2 rounded-md w-72 cursor-pointer border-2 hover:border-blue-200`}
               onClick={() => {
                 const newCheckedList = checkedList.map((checked, index) =>
                   index === idx ? !checked : checked
@@ -66,7 +63,7 @@ export default function ProductsPage() {
             >
               <div className="flex">
                 <div>상품명: </div>
-                <div>{product.name}</div>
+                <div>{product.productName}</div>
               </div>
               <div className="flex">
                 <div>가격: </div>
@@ -76,7 +73,7 @@ export default function ProductsPage() {
           ))}
         </div>
         <p className="">
-          주문 상품: {orderList.map((order) => order.name).join(", ")}
+          주문 상품: {orderList.map((order) => order.productName).join(", ")}
         </p>
         {orderList.length > 0 ? (
           <>

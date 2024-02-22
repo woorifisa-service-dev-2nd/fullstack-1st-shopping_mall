@@ -3,16 +3,15 @@ package com.dev.shopping.model;
 import lombok.*;
 
 import javax.persistence.Entity;
-import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-
+@ToString
 public class Product extends BaseEntity{
     String productName;
-    Long price;
+    Integer price;
     String type;
 }

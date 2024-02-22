@@ -2,9 +2,11 @@ package com.dev.shopping.repository;
 
 import com.dev.shopping.model.Product;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
-    List<Product> findByProductNameContaining(String keyword);
+@Repository
+public interface ProductRepository extends CrudRepository<Product, Integer> {
+    List<Product> findByProductNameContaining(String productName);
 }

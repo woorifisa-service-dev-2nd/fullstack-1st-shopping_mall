@@ -10,11 +10,10 @@ export default function OrderPage() {
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    console.log(selectedItems);
     if (selectedItems && selectedItems.length > 0) {
       setOrder(
         selectedItems.map((item) => ({
-          name: item.name,
+          productName: item.productName,
           quantity: 1,
           price: item.price,
         }))
@@ -24,13 +23,16 @@ export default function OrderPage() {
 
   const handleChange = (event, itemName) => {
     const updatedOrder = order.map((item) =>
-      item.name === itemName ? { ...item, quantity: event.target.value } : item
+      item.productName === itemName
+        ? { ...item, quantity: event.target.value }
+        : item
     );
     setOrder(updatedOrder);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     console.log(order);
   };
 
@@ -53,7 +55,7 @@ export default function OrderPage() {
         <div className="border-solid border-2 w-full border-[#e0e0e0]"></div>
         {order.map((item, index) => (
           <div key={index} className="border p-4 rounded shadow my-3 w-80">
-            <h2 className="text-xl font-semibold">{item.name}</h2>
+            <h2 className="text-xl font-semibold">{item.productName}</h2>
             <label className="block">
               <span className="text-gray-700">수량:</span>
               <input
@@ -61,7 +63,7 @@ export default function OrderPage() {
                 name="quantity"
                 min={0}
                 value={item.quantity}
-                onChange={(event) => handleChange(event, item.name)}
+                onChange={(event) => handleChange(event, item.productName)}
                 className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
               />
             </label>
